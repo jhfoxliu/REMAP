@@ -38,17 +38,19 @@ Tags:
 
 The types of expansion (in the ST tag):
 
-    N   Non-expanded
-    S   SNP
-    H: Homopolymer immediately
-    H1: Homopolymer with first base overhang
-    H2: Homopolymer with first tow bases overhang
-    UN: Unknown
-    RA_{seq1}_{seq2}: Ranneal. {seq1} is the repeat motif, seq2 is the gapped sequence
-    SK: Skip
+    N                   Non-expanded
+    S                   SNP (only if `-s` is used)
+    H                   Homopolymer from +1. e.g., A+1AAA
+    H1                  Homopolymer from +2. e.g., C+1TTT
+    H2                  Homopolymer from +3. e.g., T+1CAAAA
+    UN                  Unknown. When it is unknown, the `SS` tag will return the sequence of the softclipping.
+    RA_{seq1}_{seq2}    Ranneal event. {seq1} is the repeat motif, seq2 is the gapped sequence
+    SK                  Skip (deletion) of the homopolymer
 
 
 The script will then analyze the generated BAM file to perform statistics on the 5' end mapping.
+
+The script will automatically reports the number of reads.
 
 3. Once you get multiple `CSV` files, you can use the script `xxxx.py` to compare RNA 5' expansion among samples.
 
@@ -61,6 +63,9 @@ Please check the `Examples` folder for details:
 
 The algorithm in the `amend_bam.py` script is optimized based on the knowledge 
 
+## Bug report
+
+Please contact `Fox` (`jhfoxliu@gmail.com` or `jil4026@med.cornell.edu`) if you encounter any bug. Appriciate if you can post in `Issues`, so that the other users will know where is the bug and whether it get fixed.
 
 ## License
 
