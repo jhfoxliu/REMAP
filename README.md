@@ -4,7 +4,7 @@
 
 python3 == 3.9.14
 
-Pysam == 0.19.1 (tested, can be compatible with other versions)
+Pysam == 0.19.1
 
 Biopython == 1.79
 
