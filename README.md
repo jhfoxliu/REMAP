@@ -1,14 +1,19 @@
-# A pipeline for amending of RNA 5' end mapping data
+# A pipeline for RNA 5' expansion analysis
+
+It is belived that in eukaryotic cells, RNA Pol II synthesizes the RNA strand faithfully based on the template, and therefore the RNA 5' end should perfectly mathces the reference genome. However, I found that it is not true, that in many cases, there are extra nucleotides in the RNA 5' ends. I called this phenomenon "RNA 5' expansion", which is highly likely due to a dehybridization-reanneal-reinitation of transcription initiation. 
+
+Currently, all aligner cannot well handle RNA 5' expansion. For some cases, the aligner will return "soft clipping" (unaligned bases) at the 5' end of the reads; for some other instances, the aligner will report no soft clipping but 5' mismatches; for some extreme cases, when the expansion is too long, the aligner might generate an artifical splicing, where the expanded bases are mapped far away upstream of the TSS. 
+
+To dissect RNA 5' expansion, I desgined a pipeline to amend the 5' mapping results from `Hisat2`. 
 
 ## Tested dependencies
 
-python3 == 3.9.14
-
-Pysam == 0.19.1
-
-Biopython == 1.79
-
-pandas == 2.2.2
+| Package   | Version |
+| :---------| :-------|
+| Python3   | 3.9.14  |
+| Pysam     | 0.19.1  |
+| Biopython | 1.79    |
+| Pandas    | 2.2.2   |
 
 
 ## Installation
