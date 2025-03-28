@@ -12,7 +12,7 @@ Installation is not required. Please clone the scripts in this repo.
 
 ## Usage
 
-1. Map the reads with aligners such as `hisat2` and `STAR`. I designed the pipeline with `hisat2`. Please make sure that softclipping is enabled. By defult, both `hisat2` and `STAR` enables softclipping by default. Please convert the `SAM` output into sorted and indexed `BAM`. 
+1. Map the reads with aligners. I designed the pipeline based on `Hisat2` (v2.2.1). Unexpected errors might occur while using other aligners such as `STAR`, because the strategy in handling soft clipping might vary. Please make sure that softclipping is enabled (default in `Hisat2`). Please convert the `SAM` output into sorted and indexed `BAM`. 
 
 2. Run the script `amend_bam.py` with the `BAM` file. 
 
@@ -27,7 +27,7 @@ Options:
     -p              Number of processors to use. One processor for one chromosome.
     --single-end    Please use this option if the reads are single-end.
 
-The `amend_bam.py` will first go over the `BAM` input. For each read (read1 if paired), the script will amend the 5' end mapping result if softclipping occurs. Please refer to `amendment_logic.pdf` to see the decision tree. Once amendment is done, the script will generate a corrected `BAM` file (determined by `--bam-out`, `{input_bam}.corrected.bam` by defult). The output `BAM` file only contains the uniquely mapped read1 with the following tags:
+The `amend_bam.py` will first go over the `BAM` input. For each read (read1 if paired), the script will amend the 5' end mapping result if softclipping occurs. Once amendment is done, the script will generate a corrected `BAM` file (determined by `--bam-out`, `{input_bam}.corrected.bam` by defult). The output `BAM` file only contains the uniquely mapped read1 with the following tags:
 
 Tags:
 
