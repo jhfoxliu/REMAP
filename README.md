@@ -1,9 +1,14 @@
 # A pipeline for amending of RNA 5' end mapping data
 
-## Dependencies
+## Tested dependencies
 
-python3
-pysam == 
+python3 == 3.9.14
+
+Pysam == 0.19.1 (tested, can be compatible with other versions)
+
+Biopython == 1.79
+
+pandas == 2.2.2
 
 
 ## Installation
