@@ -4,7 +4,13 @@ It is belived that in eukaryotic cells, RNA Pol II synthesizes the RNA strand fa
 
 Currently, all aligner cannot well handle RNA 5' expansion. For some cases, the aligner will return "soft clipping" (unaligned bases) at the 5' end of the reads; for some other instances, the aligner will report no soft clipping but 5' mismatches; for some extreme cases, when the expansion is too long, the aligner might generate an artifical splicing, where the expanded bases are mapped far away upstream of the TSS. 
 
-To dissect RNA 5' expansion, I desgined a pipeline to amend the 5' mapping results from `Hisat2`. 
+To dissect RNA 5' expansion, I desgined a pipeline to amend the 5' mapping results from `Hisat2`. This pipeline contains two steps:
+
+(1) The script will go over the `BAM` file, and correct the mistakenly assigned 5' ends. This step will generate a amended `BAM` file.
+
+(2) The script will go over the amended `BAM` file, and return a `CSV` file describing the amended results.
+
+(3) I also provide a tool to find and compare 5' expansions among different samples.
 
 ## Tested dependencies
 
