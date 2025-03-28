@@ -62,7 +62,8 @@ The script will automatically reports the number of reads.
 
 ## Examples
 
-![Fig SX algorithm](https://github.com/user-attachments/assets/1895b3a6-fb74-4e60-be6d-a6fa09bce335)
+![Fig SX algorithm](https://github.com/user-attachments/assets/6d84ab89-e948-4411-b3d8-49e9ccb6fb8d)
+
 
 ## Prototype
 
