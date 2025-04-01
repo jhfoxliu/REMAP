@@ -30,6 +30,15 @@ Installation is not required. Please clone the scripts in this repo.
 
 1. Map the reads with aligners. I designed the pipeline based on `Hisat2` (v2.2.1). Unexpected errors might occur while using other aligners such as `STAR`, because the strategy in handling soft clipping might vary. Please make sure that softclipping is enabled (default in `Hisat2`). Please convert the `SAM` output into sorted and indexed `BAM`. 
 
+**Warnings**: Please do not use `--no-temp-splicesite` option in `Hisat2`. Temporary splicing is very important for alignment when the expansion is extremely long!!!
+
+**Suggested cmd**:
+
+Single-end: `{hisat2} -x {hisat2_index} --no-discordant --no-mixed -p {threads} -U read.fastq | samtools view -bS -@ {threads} -F 4 > hisat2.bam`
+
+Paired-end: `{hisat2} -x {hisat2_index} --no-discordant --no-mixed --fr --rna-strandness FR -p {threads} -1 read1.fastq -2 read2.fastq | samtools view -bS -@ {threads} -F 4 > hisat2.bam`
+
+
 2. Run the script `amend_bam.py` with the `BAM` file. 
 
 Options:
@@ -59,6 +68,7 @@ The types of expansion (in the ST tag):
     H                   Homopolymer from +1. e.g., A+1AAA
     H1                  Homopolymer from +2. e.g., C+1TTT
     H2                  Homopolymer from +3. e.g., T+1CAAAA
+    H3                  Homopolymer from +4. e.g., G+1T1CAAAA
     UN                  Unknown. When it is unknown, the `SS` tag will return the sequence of the softclipping.
     RA_{seq1}_{seq2}    Ranneal event. {seq1} is the repeat motif, seq2 is the gapped sequence
     SK                  Skip (deletion) of the homopolymer
