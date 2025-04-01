@@ -28,18 +28,21 @@ Installation is not required. Please clone the scripts in this repo.
 
 ## Usage
 
-1. Map the reads with aligners. I designed the pipeline based on `Hisat2` (v2.2.1). Unexpected errors might occur while using other aligners such as `STAR`, because the strategy in handling soft clipping might vary. Please make sure that softclipping is enabled (default in `Hisat2`). Please convert the `SAM` output into sorted and indexed `BAM`. 
+### Mapping
+
+Map the reads with aligners. I designed the pipeline based on `Hisat2` (v2.2.1). Unexpected errors might occur while using other aligners such as `STAR`, because the strategy in handling soft clipping might vary. Please make sure that softclipping is enabled (default in `Hisat2`). Please convert the `SAM` output into sorted and indexed `BAM`. 
 
 **Warnings**: Please do not use `--no-temp-splicesite` option in `Hisat2`. Temporary splicing is very important for alignment when the expansion is extremely long!!!
 
 **Suggested cmd**:
 
-Single-end: `{hisat2} -x {hisat2_index} --no-discordant --no-mixed -p {threads} -U read.fastq | samtools view -bS -@ {threads} -F 4 > hisat2.bam`
+Single-end: `hisat2 -x {hisat2_index} --no-discordant --no-mixed -p {threads} -U read.fastq | samtools view -bS -@ {threads} -F 4 > hisat2.bam`
 
-Paired-end: `{hisat2} -x {hisat2_index} --no-discordant --no-mixed --fr --rna-strandness FR -p {threads} -1 read1.fastq -2 read2.fastq | samtools view -bS -@ {threads} -F 4 > hisat2.bam`
+Paired-end: `hisat2 -x {hisat2_index} --no-discordant --no-mixed --fr --rna-strandness FR -p {threads} -1 read1.fastq -2 read2.fastq | samtools view -bS -@ {threads} -F 4 > hisat2.bam`
 
+### Amend 5' alignments
 
-2. Run the script `amend_bam.py` with the `BAM` file. 
+Run the script `amend_bam.py` with the `BAM` file. 
 
 Options:
     -b              The input `BAM` file.
@@ -78,7 +81,9 @@ The script will then analyze the generated BAM file to perform statistics on the
 
 The script will automatically reports the number of reads.
 
-3. Once you get multiple `CSV` files, you can use the script `xxxx.py` to compare RNA 5' expansion among samples.
+### Compare different samples
+
+Once you get multiple `CSV` files, you can use the script `xxxx.py` to compare RNA 5' expansion among samples.
 
 
 ## Examples
