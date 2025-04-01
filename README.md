@@ -16,11 +16,11 @@ To dissect RNA 5' expansion, I desgined a pipeline to amend the 5' mapping resul
 
 | Package   | Version |
 | :---------| :-------|
-| Python3   | 3.9.14  |
 | Pysam     | 0.19.1  |
 | Biopython | 1.79    |
 | Pandas    | 2.2.2   |
 
+All based on `Python 3.9.14`.
 
 ## Installation
 
@@ -30,15 +30,19 @@ Installation is not required. Please clone the scripts in this repo.
 
 ### 1. Mapping
 
-Map the reads with aligners. I designed the pipeline based on `Hisat2` (v2.2.1). Unexpected errors might occur while using other aligners such as `STAR`, because the strategy in handling soft clipping might vary. Please make sure that softclipping is enabled (default in `Hisat2`). Please convert the `SAM` output into sorted and indexed `BAM`. 
+Map the adapter-trimmed reads with aligners. I designed the pipeline based on `Hisat2` (v2.2.1). Please make sure that softclipping is enabled (default in `Hisat2`). Please convert the `SAM` output into sorted and indexed `BAM`. 
 
 **Warnings**: Please do not use `--no-temp-splicesite` option in `Hisat2`. Temporary splicing is very important for alignment when the expansion is extremely long!!!
 
-**Suggested mapping cmd**:
+**Warnings**: Unexpected errors might occur while using other aligners such as `STAR`, because the strategy in handling soft clipping might vary.
 
-`hisat2 -x {hisat2_index} --no-discordant --no-mixed -p {threads} -U read.fastq | samtools view -bS -@ {threads} -F 4 > hisat2.bam` (single-end)
+**Suggested mapping cmd (single-end)**:
 
- `hisat2 -x {hisat2_index} --no-discordant --no-mixed --fr --rna-strandness FR -p {threads} -1 read1.fastq -2 read2.fastq | samtools view -bS -@ {threads} -F 4 > hisat2.bam` (paired-end)
+`hisat2 -x {hisat2_index} --no-discordant --no-mixed -p {threads} -U read.fastq | samtools view -bS -@ {threads} -F 4 > hisat2.bam`
+
+**Suggested mapping cmd (paired-end)**:
+
+ `hisat2 -x {hisat2_index} --no-discordant --no-mixed --fr --rna-strandness FR -p {threads} -1 read1.fastq -2 read2.fastq | samtools view -bS -@ {threads} -F 4 > hisat2.bam`
 
 
 ### 2. Amend 5' alignments
