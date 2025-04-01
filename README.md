@@ -34,7 +34,7 @@ Map the adapter-trimmed reads with aligners. I designed the pipeline based on `H
 
 **Suggestions**
 
-* Including SNPs in `Hisat2` indexes can improve mapping accuracy. Please refer to https://daehwankimlab.github.io/hisat2/manual/ about how to add to SNPs.
+* Including SNPs in `Hisat2` indexes can improve mapping accuracy. Please refer to [`Hisat2 manual`](https://daehwankimlab.github.io/hisat2/manual/) about how to add SNPs.
 
 **Warnings**
 
