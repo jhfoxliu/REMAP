@@ -34,11 +34,12 @@ Map the reads with aligners. I designed the pipeline based on `Hisat2` (v2.2.1).
 
 **Warnings**: Please do not use `--no-temp-splicesite` option in `Hisat2`. Temporary splicing is very important for alignment when the expansion is extremely long!!!
 
-**Suggested cmd**:
+**Suggested mapping cmd**:
 
-Single-end: `hisat2 -x {hisat2_index} --no-discordant --no-mixed -p {threads} -U read.fastq | samtools view -bS -@ {threads} -F 4 > hisat2.bam`
+`hisat2 -x {hisat2_index} --no-discordant --no-mixed -p {threads} -U read.fastq | samtools view -bS -@ {threads} -F 4 > hisat2.bam` (single-end)
 
-Paired-end: `hisat2 -x {hisat2_index} --no-discordant --no-mixed --fr --rna-strandness FR -p {threads} -1 read1.fastq -2 read2.fastq | samtools view -bS -@ {threads} -F 4 > hisat2.bam`
+ `hisat2 -x {hisat2_index} --no-discordant --no-mixed --fr --rna-strandness FR -p {threads} -1 read1.fastq -2 read2.fastq | samtools view -bS -@ {threads} -F 4 > hisat2.bam` (paired-end)
+
 
 ### 2. Amend 5' alignments
 
@@ -57,24 +58,24 @@ Options:
 
 The `amend_bam.py` will first go over the `BAM` input. For each read (read1 if paired), the script will amend the 5' end mapping result if softclipping occurs. Once amendment is done, the script will generate a corrected `BAM` file (determined by `--bam-out`, `{input_bam}.corrected.bam` by defult). The output `BAM` file only contains the uniquely mapped read1 with the following tags:
 
-Tags:
-
-    SL  The length of softclipping. INT. 
-    SS  The sequence of expended sequence. String. 
-    ST  The type of expansion (see below). String. 
-    PG  Genomic position (0-based). INT. 
+| SL |  The length of softclipping. INT. 
+| SS | The sequence of expended sequence. String. 
+| ST | The type of expansion (see below). String. 
+| PG | Genomic position (0-based). INT. 
 
 The types of expansion (in the ST tag):
 
-    N                   Non-expanded
-    S                   SNP (only if `-s` is used)
-    H                   Homopolymer from +1. e.g., A+1AAA
-    H1                  Homopolymer from +2. e.g., C+1TTT
-    H2                  Homopolymer from +3. e.g., T+1CAAAA
-    H3                  Homopolymer from +4. e.g., G+1T1CAAAA
-    UN                  Unknown. When it is unknown, the `SS` tag will return the sequence of the softclipping.
-    RA_{seq1}_{seq2}    Ranneal event. {seq1} is the repeat motif, seq2 is the gapped sequence
-    SK                  Skip (deletion) of the homopolymer
+| BAM file value     | CSV file value (COMMENTS column) | Explanation  |
+| :------------------| :--------------------------------| :----------  |
+|   M                |  M                               | Non-expanded |
+|   S                |  SNP                             | SNP (only if `-s` is used) | 
+|   H                |  +1 EXPANDED                     | Homopolymer from +1. e.g., A+1AAA | 
+|   H1               |  +2 EXPANDED                     | Homopolymer from +2. e.g., C+1TTT |
+|   H2               |  +3 EXPANDED                     | Homopolymer from +3. e.g., T+1CAAAA |
+|   H3               |  +4 EXPANDED                     | Homopolymer from +4. e.g., G+1T1CAAAA |
+|   UN               |  UNKNOWN                         | Unknown. When it is unknown, the `SS` tag will return the sequence of the softclipping. |
+|   RA_{seq1}_{seq2} |  Reanneal_{seq1}_{seq2}          | Ranneal event. {seq1} is the repeat motif, seq2 is the gapped sequence |
+|   SK               |  SKIPPED                         | Skip (deletion) of the homopolymer |
 
 
 The script will then analyze the generated BAM file to perform statistics on the 5' end mapping.
