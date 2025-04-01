@@ -32,15 +32,21 @@ Installation is not required. Please clone the scripts in this repo.
 
 Map the adapter-trimmed reads with aligners. I designed the pipeline based on `Hisat2` (v2.2.1). Please make sure that softclipping is enabled (default in `Hisat2`). Please convert the `SAM` output into sorted and indexed `BAM`. 
 
-**Warnings**: Please do not use `--no-temp-splicesite` option in `Hisat2`. Temporary splicing is very important for alignment when the expansion is extremely long!!!
+**Suggestions**
 
-**Warnings**: Unexpected errors might occur while using other aligners such as `STAR`, because the strategy in handling soft clipping might vary.
+* Including SNPs in `Hisat2` indexes can improve mapping accuracy. Please refer to https://daehwankimlab.github.io/hisat2/manual/ about how to add to SNPs.
 
-**Suggested mapping cmd (single-end)**:
+**Warnings**
+
+* Please do not use `--no-temp-splicesite` option in `Hisat2`. Temporary splicing is very important for alignment when the expansion is extremely long!!!
+
+* Unexpected errors might occur while using other aligners such as `STAR`, because the strategy in handling soft clipping might vary.
+
+**Example mapping cmd (single-end)**:
 
 `hisat2 -x {hisat2_index} --no-discordant --no-mixed -p {threads} -U read.fastq | samtools view -bS -@ {threads} -F 4 > hisat2.bam`
 
-**Suggested mapping cmd (paired-end)**:
+**Example mapping cmd (paired-end)**:
 
  `hisat2 -x {hisat2_index} --no-discordant --no-mixed --fr --rna-strandness FR -p {threads} -1 read1.fastq -2 read2.fastq | samtools view -bS -@ {threads} -F 4 > hisat2.bam`
 
