@@ -58,10 +58,12 @@ Options:
 
 The `amend_bam.py` will first go over the `BAM` input. For each read (read1 if paired), the script will amend the 5' end mapping result if softclipping occurs. Once amendment is done, the script will generate a corrected `BAM` file (determined by `--bam-out`, `{input_bam}.corrected.bam` by defult). The output `BAM` file only contains the uniquely mapped read1 with the following tags:
 
-| SL |  The length of softclipping. INT. 
-| SS | The sequence of expended sequence. String. 
-| ST | The type of expansion (see below). String. 
-| PG | Genomic position (0-based). INT. 
+| Tag|  Explanation                       | Data type |
+| :--| :----------------------------------| :-------  |
+| SL |  The length of softclipping.       | INT       |
+| SS |  The sequence of expended sequence.| String    |
+| ST |  The type of expansion (see below).| String    |
+| PG |  Genomic position (0-based).       | INT       |
 
 The types of expansion (in the ST tag):
 
