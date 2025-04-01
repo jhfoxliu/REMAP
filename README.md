@@ -34,7 +34,9 @@ Map the adapter-trimmed reads with aligners. I designed the pipeline based on `H
 
 **Suggestions**
 
-* Including SNPs in `Hisat2` indexes can improve mapping accuracy. Please refer to [`Hisat2 manual`](https://daehwankimlab.github.io/hisat2/manual/) about how to add SNPs.
+* Including SNPs in `Hisat2` indexes can improve mapping accuracy. Please refer to [`Hisat2 manual`](https://daehwankimlab.github.io/hisat2/manual/) about how to add SNPs. I suggest using UCSC common SNPs (MAF > 1%) rather than all SNPs, which might lead to fasle negatives.
+
+* Normally I include both SNPs and splicing in the indexes. It can take up to 200 Gb RAM during index prepration and ~8 Gb RAM during mapping.
 
 **Warnings**
 
