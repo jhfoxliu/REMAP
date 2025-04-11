@@ -55,7 +55,7 @@ Map the adapter-trimmed reads with aligners. I designed the pipeline based on `H
 
 ### 2. Amend 5' alignments
 
-Run the script `amend_bam.py` with the `BAM` file. 
+Run the script `reannoate_mapped_five_prime_ends.v1.0.py` with the `BAM` file. 
 
 Options:
     -b              The input `BAM` file.
@@ -68,7 +68,7 @@ Options:
     -p              Number of processors to use. One processor for one chromosome.
     --single-end    Please use this option if the reads are single-end.
 
-The `amend_bam.py` will first go over the `BAM` input. For each read (read1 if paired), the script will amend the 5' end mapping result if softclipping occurs. Once amendment is done, the script will generate a corrected `BAM` file (determined by `--bam-out`, `{input_bam}.corrected.bam` by defult). The output `BAM` file only contains the uniquely mapped read1 with the following tags:
+The `reannoate_mapped_five_prime_ends.v1.0.py` will first go over the `BAM` input. For each read (read1 if paired), the script will amend the 5' end mapping result if softclipping occurs. Once amendment is done, the script will generate a corrected `BAM` file (determined by `--bam-out`, `{input_bam}.corrected.bam` by defult). The output `BAM` file only contains the uniquely mapped read1 with the following tags:
 
 | Tag|  Explanation                       | Data type |
 | :--| :----------------------------------| :-------  |
@@ -107,7 +107,7 @@ Once you get multiple `CSV` files, you can use the script `xxxx.py` to compare R
 
 ## Prototype
 
-The algorithm in the `amend_bam.py` script is optimized based on the knowledge 
+The prototype relies on removing the last base from the mapped 5' ends until the trimmed reads are fully mapped. This strategy is very slow and no longer used.
 
 ## Bug report
 
