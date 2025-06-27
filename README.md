@@ -103,8 +103,7 @@ Once you get multiple `CSV` files, you can use the script `REMAP.processing.v1.p
 
 ## Mechanism
 
-![REMAP](https://github.com/user-attachments/assets/e573ef46-6518-40cd-9ad0-97cd8db1c1e4)
-
+![REMAP](https://github.com/user-attachments/assets/0e901955-ebd9-4b46-89a1-7754e040190a)
 
 ## Prototype
 
