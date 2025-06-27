@@ -1,10 +1,10 @@
-# A pipeline for RNA 5' expansion analysis
+# RNA 5' Expansion Mapping and Annotation Pipeline (REMAP)
 
 It is belived that in eukaryotic cells, RNA Pol II synthesizes the RNA strand faithfully based on the template, and therefore the RNA 5' end should perfectly mathces the reference genome. However, I found that it is not true, that in many cases, there are extra nucleotides in the RNA 5' ends. I called this phenomenon "RNA 5' expansion", which is highly likely due to a dehybridization-reanneal-reinitation of transcription initiation. 
 
 Currently, all aligner cannot well handle RNA 5' expansion. For some cases, the aligner will return "soft clipping" (unaligned bases) at the 5' end of the reads; for some other instances, the aligner will report no soft clipping but 5' mismatches; for some extreme cases, when the expansion is too long, the aligner might generate an artifical splicing, where the expanded bases are mapped far away upstream of the TSS. 
 
-To dissect RNA 5' expansion, I desgined a pipeline to amend the 5' mapping results from `Hisat2`. This pipeline contains three steps:
+To dissect RNA 5' expansion, I desgined **REMAP** to amend the 5' mapping results from `Hisat2`. This pipeline contains three steps:
 
 (1) The script will go over the `BAM` file, and correct the mistakenly assigned 5' ends. This step will generate a amended `BAM` file.
 
