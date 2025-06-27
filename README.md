@@ -101,9 +101,10 @@ The script will automatically reports the number of reads.
 Once you get multiple `CSV` files, you can use the script `REMAP.processing.v1.py` to compare RNA 5' expansion among samples.
 
 
-## Examples
+## Mechanism
 
-![Fig SX algorithm](![REMAP](https://github.com/user-attachments/assets/06609f22-269d-4c33-8dd7-da7fc3d68da0))
+![REMAP](https://github.com/user-attachments/assets/e573ef46-6518-40cd-9ad0-97cd8db1c1e4)
+
 
 ## Prototype
 
