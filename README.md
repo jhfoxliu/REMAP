@@ -68,7 +68,7 @@ Options:
     -p              Number of processors to use. One processor for one chromosome.
     --single-end    Please use this option if the reads are single-end.
 
-The `reannoate_mapped_five_prime_ends.v1.0.py` will first go over the `BAM` input. For each read (read1 if paired), the script will amend the 5' end mapping result if softclipping occurs. Once amendment is done, the script will generate a corrected `BAM` file (determined by `--bam-out`, `{input_bam}.corrected.bam` by defult). The output `BAM` file only contains the uniquely mapped read1 with the following tags:
+The `REMAP.v1.py` will first go over the `BAM` input. For each read (read1 if paired), the script will amend the 5' end mapping result if softclipping occurs. Once amendment is done, the script will generate a corrected `BAM` file (determined by `--bam-out`, `{input_bam}.corrected.bam` by defult). The output `BAM` file only contains the uniquely mapped read1 with the following tags:
 
 | Tag|  Explanation                       | Data type |
 | :--| :----------------------------------| :-------  |
@@ -98,12 +98,12 @@ The script will automatically reports the number of reads.
 
 ### 3. Compare different samples
 
-Once you get multiple `CSV` files, you can use the script `xxxx.py` to compare RNA 5' expansion among samples.
+Once you get multiple `CSV` files, you can use the script `REMAP.processing.v1.py` to compare RNA 5' expansion among samples.
 
 
 ## Examples
 
-![Fig SX algorithm](https://github.com/user-attachments/assets/39c7eab1-ebd9-4586-939e-9a7ee8c2c0f8)
+![Fig SX algorithm](![REMAP](https://github.com/user-attachments/assets/06609f22-269d-4c33-8dd7-da7fc3d68da0))
 
 ## Prototype
 
