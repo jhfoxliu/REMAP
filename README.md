@@ -4,7 +4,7 @@ It is belived that in eukaryotic cells, RNA Pol II synthesizes the RNA strand fa
 
 Currently, all aligner cannot well handle RNA 5' expansion. For some cases, the aligner will return "soft clipping" (unaligned bases) at the 5' end of the reads; for some other instances, the aligner will report no soft clipping but 5' mismatches; for some extreme cases, when the expansion is too long, the aligner might generate an artifical splicing, where the expanded bases are mapped far away upstream of the TSS. 
 
-To dissect RNA 5' expansion, I desgined **REMAP** to amend the 5' mapping results from `Hisat2`. This pipeline contains three steps:
+To dissect RNA 5' expansion, I desgined `REMAP` to amend the 5' mapping results from `Hisat2`. This pipeline contains three steps:
 
 (1) The script will go over the `BAM` file, and correct the mistakenly assigned 5' ends. This step will generate a amended `BAM` file.
 
@@ -55,7 +55,7 @@ Map the adapter-trimmed reads with aligners. I designed the pipeline based on `H
 
 ### 2. Amend 5' alignments
 
-Run the script `reannoate_mapped_five_prime_ends.v1.0.py` with the `BAM` file. 
+Run the script `REMAP.v1.py` with the `BAM` file. 
 
 Options:
     -b              The input `BAM` file.
