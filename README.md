@@ -2,6 +2,8 @@
 
 It is belived that in eukaryotic cells, RNA Pol II synthesizes the RNA strand faithfully based on the template, and therefore the RNA 5' end should perfectly mathces the reference genome. However, I found that it is not true, that in many cases, there are extra nucleotides in the RNA 5' ends. I called this phenomenon "RNA 5' expansion", which is highly likely due to a dehybridization-reanneal-reinitation of transcription initiation. 
 
+![Graphical Abstract_v3 - 1 - 1200x1200](https://github.com/user-attachments/assets/b497b6a9-4c26-4e8d-addb-d2494e4090fb)
+
 Currently, all aligner cannot well handle RNA 5' expansion. For some cases, the aligner will return "soft clipping" (unaligned bases) at the 5' end of the reads; for some other instances, the aligner will report no soft clipping but 5' mismatches; for some extreme cases, when the expansion is too long, the aligner might generate an artifical splicing, where the expanded bases are mapped far away upstream of the TSS. 
 
 To dissect RNA 5' expansion, I desgined `REMAP` to amend the 5' mapping results from `Hisat2`. This pipeline contains three steps:
@@ -11,9 +13,6 @@ To dissect RNA 5' expansion, I desgined `REMAP` to amend the 5' mapping results 
 (2) The script will go over the amended `BAM` file, and return a `CSV` file describing the amended results.
 
 (3) I also provide a tool to find and compare 5' expansions among different samples.
-
-![Graphical Abstract_v3 - 1 - 1200x1200](https://github.com/user-attachments/assets/b497b6a9-4c26-4e8d-addb-d2494e4090fb)
-
 
 ## Tested dependencies
 
