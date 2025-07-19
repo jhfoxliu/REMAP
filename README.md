@@ -119,4 +119,4 @@ MIT.
 
 ## Citation
 
-Paper is under submission.
+The paper is under submission.
