@@ -12,7 +12,8 @@ To dissect RNA 5' expansion, I desgined `REMAP` to amend the 5' mapping results 
 
 (3) I also provide a tool to find and compare 5' expansions among different samples.
 
-<img width="1200" height="1200" alt="Graphical Abstract_v3 - 1" src="https://github.com/user-attachments/assets/eb85ff0d-450f-4716-92fc-b84b83b89284" />
+![Graphical Abstract_v3 - 1 - 1200x1200](https://github.com/user-attachments/assets/b497b6a9-4c26-4e8d-addb-d2494e4090fb)
+
 
 ## Tested dependencies
 
